@@ -1,0 +1,78 @@
+/* Estilos gerais da página */
+body {
+    background-color: #000000;
+    color: #ff0000; /* Cor inicial das letras */
+    text-align: center;
+    font-family: 'Fantasy', Fantasy;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; /* Ocupa 100% da altura da tela */
+    overflow: hidden; /* Esconde barras de rolagem */
+    margin: 0;
+    padding: 0;
+}
+/* Estilização das letras ocultas inicialmente */
+.letra {
+    font-size: 50px;
+    opacity: 0; /* Inicialmente invisível */
+    display: inline-block;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Efeito elástico */
+    transform: translateY(20px); /* Posição inicial abaixo */
+    margin: 0 3px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3); /* Brilho suave */
+}
+/* Estilização dos fogos de artifício */
+.fogo {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    pointer-events: none; /* Permite cliques através do elemento */
+    z-index: 100; /* Fica acima de outros elementos */
+    transition: none; /* Controlado via JavaScript */
+    transform: translate(-50%, -50%); /* Centralização precisa */
+}
+/* Animação de explosão (ativa via JavaScript) */
+.fogo.explodindo {
+    animation: explodir 0.8s ease-out forwards;
+}
+@keyframes explodir {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+}
+/* Estilização dos balões */
+.balao {
+    position: absolute;
+    bottom: -100px; /* Começa fora da tela */
+    width: 45px;
+    height: 55px;
+    background-color: #ff3366;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* Formato orgânico */
+    animation: subir 8s linear infinite; /* Animação contínua */
+    z-index: 50; /* Fica abaixo dos fogos */
+    opacity: 0.9;
+}
+@keyframes subir {
+    0% { transform: translateY(0) rotate(-5deg); } /* Rotação inicial */
+    100% { transform: translateY(-100vh) rotate(5deg); } /* Sobe e gira */
+}
+/* Estilização do botão principal */
+button {
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    background: linear-gradient(45deg, #ff0066, #ff3300); /* Gradiente moderno */
+    color: white;
+    border: none;
+    border-radius: 30px; /* Bordas arredondadas */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,0,102,0.4); /* Sombra colorida */
+    z-index: 200; /* Fica acima de tudo */
+}
+button:hover {
+    transform: scale(1.05); /* Efeito de crescimento */
+    box-shadow: 0 6px 20px rgba(255,0,102,0.6); /* Sombra mais intensa */
+}
